@@ -14,6 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 class CustomUserManager(BaseUserManager):
+    """Custom user manager for managing user creation."""
     def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError("The email field must be set")
@@ -40,6 +41,8 @@ class CustomUserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    """User model representing a user in the system."""
+
     name = models.CharField(max_length=255)
     phone = models.CharField(_("phone number"), max_length=20)
     email = models.EmailField(_("email"), max_length=255, unique=True)
@@ -61,6 +64,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Salon(models.Model):
+    
+    """Salon model representing a salon in the system."""
+
     name = models.CharField(max_length=255)
     db_name = models.CharField(max_length=255)
     address = models.TextField()
@@ -79,6 +85,8 @@ class Salon(models.Model):
         
 
 def create_database(db_name):
+    """Function to create a new database based on the provided name."""
+
     db_name = f'{db_name}_db'
 
     # Establish a connection to the default PostgreSQL database

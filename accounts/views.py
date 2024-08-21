@@ -9,8 +9,23 @@ from django.utils.decorators import method_decorator
 
 @method_decorator(csrf_exempt, name='dispatch')
 class LoginView(View):
+    """
+    A view that handles user login.
+
+    Methods:
+    - post(self, request): Handle POST request for user login.
+    """
     
     def post(self, request):
+        """
+        Handle POST request for user login.
+
+        Parameters:
+        - request (HttpRequest): The HTTP request object.
+
+        Returns:
+        - JsonResponse: JSON response indicating login status.
+        """
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
@@ -27,7 +42,22 @@ class LoginView(View):
 
 
 class LogoutView(View):
+    """
+    A view that handles user logout.
+
+    Methods:
+    - post(self, request): Handle POST request for user logout.
+    """
     def post(self, request):
+        """
+        Handle POST request for user logout.
+
+        Parameters:
+        - request (HttpRequest): The HTTP request object.
+
+        Returns:
+        - JsonResponse: JSON response indicating logout status.
+        """
         logout(request)
         return JsonResponse({"detail": "Successfully logged out."}, status=200)
 

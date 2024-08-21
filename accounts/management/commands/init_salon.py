@@ -4,7 +4,10 @@ from accounts.models import Salon
 from django.conf import settings
 
 class Command(BaseCommand):
-    help = 'Initialize databases for all gyms and apply migrations'
+    """
+    Management command to initialize databases for all salons and apply migrations
+    """
+    help = 'Initialize databases for all salons and apply migrations'
 
     def handle(self, *args, **kwargs):
         for salon in Salon.objects.all():

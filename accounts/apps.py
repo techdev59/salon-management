@@ -14,6 +14,9 @@ class AccountsConfig(AppConfig):
     #     self.load_salon_databases()
 
     def load_salon_databases(self):
+        """
+        Load salon databases based on Salon model entries.
+        """
         from .models import Salon
         
         salons = Salon.objects.all()
